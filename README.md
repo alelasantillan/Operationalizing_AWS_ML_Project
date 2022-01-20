@@ -25,8 +25,8 @@ https://github.com/alelasantillan/Operationalizing_AWS_ML_Project/blob/main/writ
 
 Notebook Instance setup
 
-**1.1** Created a ml.t2.medium instance named Operationalizing-AWS-ML-Project.
-The cost of this instance is not published, but certainly is  less than $0.05/hour, which is the price for ml.t3.medium according AWS: https://aws.amazon.com/sagemaker/pricing/.
+**1.1** Created a *ml.t2.medium* instance named Operationalizing-AWS-ML-Project.
+The cost of this instance is not published, but certainly is  less than $0.05/hour, which is the price for *ml.t3.medium* according AWS: https://aws.amazon.com/sagemaker/pricing/.
 This instance will allow me to perform code debugging without incurring in great costs. In general the computing resources are consumed by the processes launched by the notebook 
 rather than the notebook itself, so no much is required in this instance.
 Once the project is running, I will consider increasing capacity along with the stress testing I will eventually perform.
@@ -42,7 +42,7 @@ I've launched the Notebook Instance, but it took a long time to be ready. It hap
 <br/><br/>
 
 **1.2** I uploaded the train_and_deploy-solution.ipynb into the SageMaker notebook instance, as well as the files hpo.py and infernce2.py to run the Hyperparameter Optimization part, the training-debugging part and the endpoint deploy part. I adjusted the bucket name in all ocurrences and changed the instance types for running
-the three different process:  two ml.m5.xlarge for the hyperparameter optimization and training-debugging and ml.m5.large for deploy of endpoint for inferences.
+the three different process:  two *ml.m5.xlarge* for the hyperparameter optimization and training-debugging and *ml.m5.large* for deploy of endpoint for inferences.
 
 **1.3** Created a bucket named "udacitysolution-alela" and changed the notebook to use that bucket.
 Run the train_and_deploy-solution.ipynb first cells refered about data collection, unzipping and syncronization with s3
@@ -63,13 +63,30 @@ The multi instance training resulted in:
 Training seconds: 4221
 whereas the single instance just:
 Training seconds: 1339
-<img src="screenshots/Step1/
-width="80%">
+<br/>
+<img src="screenshots/Step1/4. running the tuning estimator - 2 training instances ml.m5.xlarge created.png" width="80%">
 <br/><br/>
+This are the details of each training instance:
+
+<br/>
+<img src="screenshots/Step1/4.1. details of one training job.png" width="80%">
+<br/><br/>    
+And this is the cell code of the notebook that determined the two training instances to accelerate computation:
+<br/>
+<img src="screenshots/Step1/4.3. cell that determined 2 jobs.png" width="80%">
+<br/><br/>  
+And the tuning job can also be seen from here:
+<br/>
+<img src="screenshots/Step1/4.4. tuning job.png" width="80%">
+<br/><br/>  
+Finally, when those jobs completed execution, we have the following result on the cell:
+<br/>
+<img src="screenshots/Step1/4.6. hyperparamenter tuning results.png" width="80%">
+<br/><br/> 
+We can keep this values to use them later for the training-debugging of the model with optimal parameters.
+
            
-           
-5.
-We deployed two endpoints for inference in both single instance and multi instance and peformed the prediction for the same data and we obtained different results as well ad different inference times.
+**1.5** We deployed two endpoints for inference in both single instance and multi instance and peformed the prediction for the same data and we obtained different results as well ad different inference times.
 We kept the logs of both invocations to see if there is some sensitive difference but inference times were similar. We should instead perform a lot of requests to see how the endpoints latency behaves in case of higher throughput.
 <img src="screenshots/Step1/
 width="80%">

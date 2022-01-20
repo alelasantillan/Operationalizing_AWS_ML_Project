@@ -82,20 +82,42 @@ And the tuning job can also be seen from here:
 Finally, when those jobs completed execution, we have the following result on the cell:
 <br/>
 <img src="screenshots/Step1/4.6. hyperparamenter tuning results.png" width="80%">
-<br/><br/> 
+<br/>
 We can keep this values to use them later for the training-debugging of the model with optimal parameters.
-
+<br/><br/> 
            
 **1.5** We deployed two endpoints for inference in both single instance and multi instance and peformed the prediction for the same data and we obtained different results as well ad different inference times.
 We kept the logs of both invocations to see if there is some sensitive difference but inference times were similar. We should instead perform a lot of requests to see how the endpoints latency behaves in case of higher throughput.
-<img src="screenshots/Step1/
-width="80%">
+The code for the single instance:
+<br/>
+<img src="screenshots/Step1/5.1 Code for Training and debugging single instance estimator.png"width="80%">
+<br/><br/>
+The training for the single instance estimator produced by that code:
+<br/>
+<img src="screenshots/Step1/5.2. Training job for training and debugging single instance estimator.png"width="80%">
+<br/><br/>
+Process jobs completed to avoid overfitting, poor weight initilizacion, overtraining and vanishing gradients:
+<br/>
+<img src="screenshots/Step1/5.3. Process jobs created and completed to train and debug single instance estimator.png"width="80%">
 <br/><br/>
 
-6.
-finally we kept the final version of the notebook, which is the one in this repo and we deleted the endpoints and stop the notebook instance. 
-<img src="screenshots/Step1/
-width="80%">
+**1.6**  Analogously, we performed same computation for the multi-instance model:
+The code for the multi instance:
+<br/>
+<img src="screenshots/Step1/6.1 Code for Training and debugging multi instance estimator.png"width="80%">
+<br/><br/>
+The training for the multi instance estimator produced by that code:
+<br/>
+<img src="screenshots/Step1/6.2. Training job for training and debugging multi instance estimator.png"width="80%">
+<br/><br/>
+Process jobs completed to avoid overfitting, poor weight initilizacion, overtraining and vanishing gradients:
+<br/>
+<img src="screenshots/Step1/6.3. Process jobs created and completed to train and debug multi instance estimator.png"width="80%">
+<br/><br/>
+
+**1.7** After creating this two endpoints, the final version of the notebook is the one in this repo and we deleted the endpoints and stop the notebook instance to avoid charges.
+
+<img src="screenshots/Step1/7. Endpoints created by the notebook, single and mulit instance estimators.png" width="80%">
 <br/><br/>
 
 ## Step 2: Perform a similar task on an EC2 instance.

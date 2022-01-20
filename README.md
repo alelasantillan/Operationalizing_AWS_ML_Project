@@ -36,11 +36,18 @@ In previous experiences I've used also ml.m5.large ($0.115) with sucess, but thi
 <img src="screenshots/Step1/1. Notebook instance creation.png" width="80%">
 <br/><br/>
 
+I've launched the Notebook Instance, but it took a long time to be ready. It happens from time to time, but is not usual. You just have to wait:
+<br/>
+<img src="screenshots/Step1/2. In pending status.png" width="80%">
+<br/><br/>
+
 **1.2** I uploaded the train_and_deploy-solution.ipynb into the SageMaker notebook instance, as well as the files hpo.py and infernce2.py to run the Hyperparameter Optimization part, the training-debugging part and the endpoint deploy part.
 
-3.
-Created a bucket named "udacitysolution-alela" and changed the notebook to use that bucket.
+**1.3** Created a bucket named "udacitysolution-alela" and changed the notebook to use that bucket.
 Run the train_and_deploy-solution.ipynb first cells and created the images folders into the bucket
+<img src="screenshots/Step1/3. s3 udacitysolution-alela"
+width="80%">
+<br/><br/>
 
 4.
 Run the different cells of the notebook to peform Hyperparameter optimization.
@@ -53,15 +60,23 @@ The multi instance training resulted in:
 Training seconds: 4221
 whereas the single instance just:
 Training seconds: 1339
-
+<img src="screenshots/Step1/
+width="80%">
+<br/><br/>
+           
+           
 5.
 We deployed two endpoints for inference in both single instance and multi instance and peformed the prediction for the same data and we obtained different results as well ad different inference times.
 We kept the logs of both invocations to see if there is some sensitive difference but inference times were similar. We should instead perform a lot of requests to see how the endpoints latency behaves in case of higher throughput.
-
+<img src="screenshots/Step1/
+width="80%">
+<br/><br/>
 
 6.
 finally we kept the final version of the notebook, which is the one in this repo and we deleted the endpoints and stop the notebook instance. 
-
+<img src="screenshots/Step1/
+width="80%">
+<br/><br/>
 
 ## Step 2: Perform a similar task on an EC2 instance.
 
@@ -73,34 +88,55 @@ We choose first to launch a t2.micro since it's free tier, but later it turn out
 pip install torch
 there was a memory problem.
 If I consider it insufficient, I will retry with a larger instance. Anyway the load is not in the EC2, as it was not on the notebook in sagemaker, but in the jobs launched for hpo and training.:w
-
+<img src="screenshots/Step1/
+width="80%">
+<br/><br/>
+           
 To compare:
 In the sagemaker task we used ml.t2.medium for the notebook (very light work) and two ml.m5.xlarge for the trainings and ml.m5.large for inferences.
 The total costs of performing the tasks with sagemaker were $4.03
 The total costs of EC2 using same combination of resources were $
+<img src="screenshots/Step1/
+width="80%">
+<br/><br/>
 
 2.
 created the dir TrainedModels and downloaded and unzipped there the file:
 https://s3-us-west-1.amazonaws.com/udacity-aind/dog-project/dogImages.zip
 using wget and unzip commands
-
+<img src="screenshots/Step1/
+width="80%">
+<br/><br/>
+           
 3.
 Created the file solution.py and I pasted the contents of the scrip ec2train1.py
+<img src="screenshots/Step1/
+width="80%">
+<br/><br/>
 
 4.
 Run the solution.py and took a screenshot of the model into the TrainedModels directory
 After inspecting the code in solution.py I can see that it performs the same tasks that were
 performed in the notebook of step 1 (train_and_deploy-solution.ipynb. It was adapted to work 
 in a typical linux distro but with some changes as follows:
-
+<img src="screenshots/Step1/
+width="80%">
+<br/><br/>
+           
 The code resembles the one used in hpo.py, but it has no smdebug module to perform the final debugging, so the result will be less effective.
 As well, hyperparameters are fixed, so there is no hyperparameter optimization. 
 Also, this code does not perform the deploy of the endpoint. 
 All that will have to be worked later.
+<img src="screenshots/Step1/
+width="80%">
+<br/><br/>
 
 
 Execution time start 6:57 7:24 ended
-
+<img src="screenshots/Step1/
+width="80%">
+<br/><br/>
+           
 
 ## Step 3: Create a Lambda function that will consume your model inference capabilites via endpoints.
 1. 
@@ -108,7 +144,9 @@ we had to re create the endpoint we deleted yeasterday.
 We have the models for the endpoint configuration we 
  created for both multi-instance and single-instance
 We went to endpoints and created the enpoint using the multi-instance model
-
+<img src="screenshots/Step1/
+width="80%">
+<br/><br/>
 
 
 ## Step 4: Set up concurrence for your lambda function and auto-scaling for your deployed endpoint.

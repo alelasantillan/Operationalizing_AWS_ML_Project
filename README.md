@@ -168,7 +168,7 @@ After inspecting the code in solution.py I can see that it performs the same tas
 performed in the notebook of step 1 (train_and_deploy-solution.ipynb. It was adapted to work 
 in a typical linux distro but with some changes as follows:
 <br/>
-<img src="screenshots/Step1/2.6 Train the model. Aprox 30min, but terminals freeze if no activity.png" width="80%">
+<img src="screenshots/Step2/2.6 Train the model. Aprox 30min, but terminals freeze if no activity.png" width="80%">
 <br/><br/>
        
 **Considerations about the code into the solution.py file:**
@@ -188,15 +188,17 @@ And the proof of the job run well is the model saved into the directory:
 <img src="screenshots/Step2/2.7 Proof of completing the training job for the task EC2.png" width="80%">
 <br/><br/>
            
-
 ## Step 3: Create a Lambda function that will consume your model inference capabilites via endpoints.
-1. 
-we had to re create the endpoint we deleted yeasterday.
-We have the models for the endpoint configuration we 
- created for both multi-instance and single-instance
-We went to endpoints and created the enpoint using the multi-instance model
-<img src="screenshots/Step1/
-width="80%">
+**3.1** For this task I had to re create the endpoint I deleted yeasterday.
+I have the models for the endpoint configuration created for both multi-instance and single-instance
+I went to models in SageMaker and all the models created were there.
+I decided to use the multi-instance one:
+<br/>
+<img src="screenshots/Step3/3.1 Models created with SageMaker Notebook Instance.png" width="80%">
+<br/><br/>
+                                                                                                 
+Then I went to endpoints on SageMaker and created the enpoint using the multi-instance model shown above and I choose a new name for the endpoint.
+<img src="screenshots/Step3/3.2 Endpoint created from model multi-instance.png" width="80%">
 <br/><br/>
 
 

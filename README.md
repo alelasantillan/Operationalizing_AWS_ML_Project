@@ -15,35 +15,10 @@ Step 4: Set up concurrence for your lambda function and auto-scaling for your de
 
 
 ## Step 0: Project Set Up and Installation
-You must be logged to a AWS account and search for SageMaker to get into the SageMaker console. 
-Launch a Sagemaker Notebook Instance.
-Created a ml.t2.medium instance named Operationalizing-AWS-ML-Project.
-The cost of this instance is not published, but certainly is  less than $0.05/hour, which is the price for ml.t3.medium according AWS: https://aws.amazon.com/sagemaker/pricing/.
-This instance will allow me to perform code debugging without incurring in great costs. In general the computing resources are consumed by the processes launched by the notebook rather than the notebook itself, so no much is required in this instance.
-Once the project is running, I will consider increasing capacity along with the stress testing I will eventually perform.
-In previous experiences I've used also ml.m5.large ($0.115) with sucess, but this time I will take more care of resources used since in the former project I ended too close to the limit.
-<br/>
-<img src="snapshots/" width="50%">
-<br/>
-
-
-
-The files to upload are: 
-`train_adn_deploy.ipynb`, running each cell will execute the whole process and three auxiliary python scripts that are called by the notebook:
-`hpo.py`, contains the prediction model, the training loop as well as the validation and testing tasks in step 2 for hyperparameter optimization.
-`train_model.py`, esentially identical to hpo.py, but with the hooks of SageMaker module that performs debugging of the model in step 3.
-endpoint_inference.py responsible for invoking the endpoint created by the notebook and return the prediction.
-
-Open the Jupyter Notebook and select the kernel as follows:
-<br/>
-<img src="images/kernel.png" width="50%">
-<br/>
-<br/>
-and the instance:<br/>
-<img src="images/instance.png" width="50%">
-<br/>
-
-
+You will need to have a AWS account, which can be opened for free at https://aws.amazon.com 
+You will be able to follow all the steps in this project in a day of work and with a cost of around $4.00
+Follow the instructions in the write up file located here:
+https://github.com/alelasantillan/Operationalizing_AWS_ML_Project/blob/main/writeup.pdf
 
 
 ## Step 1: Train and deploy a model on a Sagemaker notebook 

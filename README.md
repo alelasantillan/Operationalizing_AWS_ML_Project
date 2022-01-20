@@ -41,16 +41,19 @@ I've launched the Notebook Instance, but it took a long time to be ready. It hap
 <img src="screenshots/Step1/2. In pending status.png" width="80%">
 <br/><br/>
 
-**1.2** I uploaded the train_and_deploy-solution.ipynb into the SageMaker notebook instance, as well as the files hpo.py and infernce2.py to run the Hyperparameter Optimization part, the training-debugging part and the endpoint deploy part.
+**1.2** I uploaded the train_and_deploy-solution.ipynb into the SageMaker notebook instance, as well as the files hpo.py and infernce2.py to run the Hyperparameter Optimization part, the training-debugging part and the endpoint deploy part. I adjusted the bucket name in all ocurrences and changed the instance types for running
+the three different process:  two ml.m5.xlarge for the hyperparameter optimization and training-debugging and ml.m5.large for deploy of endpoint for inferences.
 
 **1.3** Created a bucket named "udacitysolution-alela" and changed the notebook to use that bucket.
-Run the train_and_deploy-solution.ipynb first cells and created the images folders into the bucket
-<img src="screenshots/Step1/3. s3 udacitysolution-alela"
-width="80%">
+Run the train_and_deploy-solution.ipynb first cells refered about data collection, unzipping and syncronization with s3
+and the cells created the images folders, and images into the bucket.
+<br/>
+<img src="screenshots/Step1/3. s3 udacitysolution-alela.png" width="80%">
 <br/><br/>
 
-4.
-Run the different cells of the notebook to peform Hyperparameter optimization.
+**1.4** Run the following cells of the notebook to peform Hyperparameter optimization.
+This computation takes some time, depending on the instance type you choose to run computation.
+
 I reserved the values of the optimization to perform the training of 
 the model. At this point using the smdebug module, web perform debugging of the model 
 to avoid the following problems that can show up in any training:

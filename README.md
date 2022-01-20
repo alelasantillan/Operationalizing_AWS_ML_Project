@@ -11,7 +11,8 @@ The project consists in 5 Steps<br/>
 Step 1: Train and deploy a model on a Sagemaker notebook (one of the modalities that Sagemaker offer amongst several more).<br/>
 Step 2: Perform a similar task on an EC2 instance.</br>
 Step 3: Create a Lambda function that will consume your model inference capabilites via endpoints.</br>
-Step 4: Set up concurrence for your lambda function and auto-scaling for your deployed endpoint.</br>
+Step 4: Security and testing
+Step 5: Set up concurrence for your lambda function and auto-scaling for your deployed endpoint.</br>
 
 
 ## Step 0: Project Set Up and Installation
@@ -177,6 +178,7 @@ The code resembles the one used in hpo.py, but it has no smdebug module to perfo
 As well, hyperparameters are fixed, so there is no hyperparameter optimization. 
 Also, this code does not perform the deploy of the endpoint. 
 All that will have to be worked later.
+<br/>
 <img src="screenshots/Step1/
 width="80%">
 <br/><br/>
@@ -189,6 +191,7 @@ And the proof of the job run well is the model saved into the directory:
 <br/><br/>
            
 ## Step 3: Create a Lambda function that will consume your model inference capabilites via endpoints.
+                                                                                                      
 **3.1** For this task I had to re create the endpoint I deleted yeasterday.
 I have the models for the endpoint configuration created for both multi-instance and single-instance
 I went to models in SageMaker and all the models created were there.
@@ -196,19 +199,37 @@ I decided to use the multi-instance one:
 <br/>
 <img src="screenshots/Step3/3.1 Models created with SageMaker Notebook Instance.png" width="80%">
 <br/><br/>
-                                                                                                 
-Then I went to endpoints on SageMaker and created the enpoint using the multi-instance model shown above and I choose a new name for the endpoint.
+
+                                                                                                
+**3.2** Then I went to endpoints on SageMaker and created the enpoint using the multi-instance model shown above and I choose a new name for the endpoint.
+<br/>                                                                                               
 <img src="screenshots/Step3/3.2 Endpoint created from model multi-instance.png" width="80%">
 <br/><br/>
 
 
-## Step 4: Set up concurrence for your lambda function and auto-scaling for your deployed endpoint.
-we run into an error when testing.
-To solve that we added the policies for sagemakerfullaccess and s3fullaccess to the execution role.
-
-
+## Step 4: Security and testing.
+**4.1** I tested the lambda funcion using the following test:
 {"url": "https://s3.amazonaws.com/cdn-origin-etr.akc.org/wp-content/uploads/2017/11/20113314/Carolina-Dog-standing-outdoors.jpg" }
-
+But I run into an error when testing.
+<br/>
+<img src="screenshots/Step4/4.1 Lambda error.png" width="80%">
+<br/><br/>
+                                                                                           
+This error was caused because of Lambda running on a rol that has no permissions over SageMaker nor Over s3.
+<br/>
+<img src="screenshots/Step4/4.2 Lamda error solution 1.png" width="80%">
+<br/><br/>
+To solve that we added the policies for sagemakerfullaccess and s3fullaccess to the execution role.
+<br/>
+<img src="screenshots/Step4/4.2 Lamda error solution 2.png" width="80%">
+<br/><br/>
+                                                                       
+**4.2** I rerun the test and now it worked!
+<br/>
+<img src="screenshots/Step4/4.4 Lambda success.png" width="80%">
+<br/><br/>
+Here is the complete response from the endpoint:                                                             
+                                                               
 Test Event Name
 test-lambda
 
@@ -235,8 +256,25 @@ Request ID
 bedc566e-5914-40dd-8375-87253071f404
 
 
+## Step 5: Set up concurrence for your lambda function an
+
+1.
+To let the lamdba answer requests in a parallel fashion we added concurrency from the configuration 
+of the lambda function.
+
+reserved concurrency price is low, but latency could be high.
+provisioned concurrency is always on and more costly
+
+we set up the version1 of the function and using the edit button in Concurrency pane we selected
+reserved concurrency of 3 (to avoid costs while the enpoint is deployed)
 
 
+auto scaling
+we will scale our endpoint to scale to more instances and with some short scale in cool down time, and some longer scale out cool down time.
+
+
+
+we choose 3 instances of auto scaling as well as 3 reserved concurrency to be able to deal with triple increase in demand. 
 
 
 ## Final words:

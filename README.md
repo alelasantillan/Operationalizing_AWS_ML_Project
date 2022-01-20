@@ -131,16 +131,16 @@ In the sagemaker task we used ml.t2.medium for the notebook (very light work) an
 The total costs of performing the tasks with sagemaker were $4.03
 The total costs of EC2 using same combination of resources were much less than that, but the jobs were different too.
 <br/>
-<img src="screenshots/Step1/2.1 Biling for SageMaker.png" width="80%">
+<img src="screenshots/Step2/2.1 Biling for SageMaker.png" width="80%">
 <br/><br/>
 I choose the AMI Amazon Deep Learning because it comes with ML learning environment integrated already.
 <br/>
-<img src="screenshots/Step1/2.2 Choose the AMI  Amazon Deep Learning and choose the Instance ml.t3.medium.png" width="80%">
+<img src="screenshots/Step2/2.2 Choose the AMI  Amazon Deep Learning and choose the Instance ml.t3.medium.png" width="80%">
 <br/><br/>
 
 And finally launched the instance:
 <br/>
-<img src="screenshots/Step1/2.3 Create the Instance t2.micro that had to be changed later to ml.t3.medium.png" width="80%">
+<img src="screenshots/Step2/2.3 Create the Instance t2.micro that had to be changed later to ml.t3.medium.png" width="80%">
 <br/><br/>
 
 Later on, it turned out that for amazon deep learning free tier is not available for the Amazon Deep Learning AMI and when installing torch by doing:
@@ -153,40 +153,25 @@ For that reason I stop the instance and I re launched a ml.t3.medium and connect
 **2.2** I created the dir TrainedModels and downloaded and unzipped there the file:
 https://s3-us-west-1.amazonaws.com/udacity-aind/dog-project/dogImages.zip
 using wget and unzip commands
-<img src="screenshots/Step1/
-width="80%">
-<br/><br/>
-           
-
-<img src="screenshots/Step1/
+<br/>           
+<img src="screenshots/Step2/2.5 Download the data from s3 using wget command.png"
 width="80%">
 <br/><br/>
 
-<img src="screenshots/Step1/
-width="80%">
-<br/><br/>
-           
-
-<img src="screenshots/Step1/
-width="80%">
+**2.3** Created the file solution.py and I pasted the contents of the scrip ec2train1.py
+<br/>
+<img src="screenshots/Step2/2.4 Connect to console and create the directory for keeping the model and create the solution.py using the code provided in the ec2train1.py.png" width="80%">
 <br/><br/>
 
-
-           
-3.
-Created the file solution.py and I pasted the contents of the scrip ec2train1.py
-<img src="screenshots/Step1/
-width="80%">
-<br/><br/>
-
-4.
-Run the solution.py and took a screenshot of the model into the TrainedModels directory
+**2.4** Run the solution.py and took a screenshot of the model into the TrainedModels directory
 After inspecting the code in solution.py I can see that it performs the same tasks that were
 performed in the notebook of step 1 (train_and_deploy-solution.ipynb. It was adapted to work 
 in a typical linux distro but with some changes as follows:
-<img src="screenshots/Step1/
-width="80%">
+<br/>
+<img src="screenshots/Step1/2.6 Train the model. Aprox 30min, but terminals freeze if no activity.png" width="80%">
 <br/><br/>
+       
+**Considerations about the code into the solution.py file:**
            
 The code resembles the one used in hpo.py, but it has no smdebug module to perform the final debugging, so the result will be less effective.
 As well, hyperparameters are fixed, so there is no hyperparameter optimization. 
@@ -196,10 +181,11 @@ All that will have to be worked later.
 width="80%">
 <br/><br/>
 
-
-Execution time start 6:57 7:24 ended
-<img src="screenshots/Step1/
-width="80%">
+**2.5** Finally the job ended as follows:
+Execution time start 6:57 7:24 ended.
+And the proof of the job run well is the model saved into the directory:
+<br/>
+<img src="screenshots/Step2/2.7 Proof of completing the training job for the task EC2.png" width="80%">
 <br/><br/>
            
 

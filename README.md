@@ -124,31 +124,54 @@ Process jobs completed to avoid overfitting, poor weight initilizacion, overtrai
 
 EC2 Instance setup
 
-1.
-I've launched a simple instance ml.t3.medium on EC2 and connected to the instance once it was availabla. 
-We choose first to launch a t2.micro since it's free tier, but later it turn out that for amazon deep learning free tier is not available and when installing torch by doing:
-pip install torch
-there was a memory problem.
-If I consider it insufficient, I will retry with a larger instance. Anyway the load is not in the EC2, as it was not on the notebook in sagemaker, but in the jobs launched for hpo and training.:w
-<img src="screenshots/Step1/
-width="80%">
-<br/><br/>
-           
+**2.1** We choose first to launch a t2.micro since it's free tier to avoid costs, if I consider it insufficient, I will retry with a larger instance. Anyway the load is not in the EC2, as it was not on the notebook in sagemaker, but in the jobs launched for hpo and training. 
+
 To compare:
 In the sagemaker task we used ml.t2.medium for the notebook (very light work) and two ml.m5.xlarge for the trainings and ml.m5.large for inferences.
 The total costs of performing the tasks with sagemaker were $4.03
-The total costs of EC2 using same combination of resources were $
-<img src="screenshots/Step1/
-width="80%">
+The total costs of EC2 using same combination of resources were much less than that, but the jobs were different too.
+<br/>
+<img src="screenshots/Step1/2.1 Biling for SageMaker.png" width="80%">
+<br/><br/>
+I choose the AMI Amazon Deep Learning because it comes with ML learning environment integrated already.
+<br/>
+<img src="screenshots/Step1/2.2 Choose the AMI  Amazon Deep Learning and choose the Instance ml.t3.medium.png" width="80%">
 <br/><br/>
 
-2.
-created the dir TrainedModels and downloaded and unzipped there the file:
+And finally launched the instance:
+<br/>
+<img src="screenshots/Step1/2.3 Create the Instance t2.micro that had to be changed later to ml.t3.medium.png" width="80%">
+<br/><br/>
+
+Later on, it turned out that for amazon deep learning free tier is not available for the Amazon Deep Learning AMI and when installing torch by doing:
+pip install torch
+there was a memory problem.
+For that reason I stop the instance and I re launched a ml.t3.medium and connected to this new instance with the same information I had in the t2.micro in a matter of seconds.
+
+
+
+**2.2** I created the dir TrainedModels and downloaded and unzipped there the file:
 https://s3-us-west-1.amazonaws.com/udacity-aind/dog-project/dogImages.zip
 using wget and unzip commands
 <img src="screenshots/Step1/
 width="80%">
 <br/><br/>
+           
+
+<img src="screenshots/Step1/
+width="80%">
+<br/><br/>
+
+<img src="screenshots/Step1/
+width="80%">
+<br/><br/>
+           
+
+<img src="screenshots/Step1/
+width="80%">
+<br/><br/>
+
+
            
 3.
 Created the file solution.py and I pasted the contents of the scrip ec2train1.py

@@ -25,16 +25,18 @@ https://github.com/alelasantillan/Operationalizing_AWS_ML_Project/blob/main/writ
 
 Notebook Instance setup
 
-1.
-Created a ml.t2.medium instance named Operationalizing-AWS-ML-Project.
+**1.1** Created a ml.t2.medium instance named Operationalizing-AWS-ML-Project.
 The cost of this instance is not published, but certainly is  less than $0.05/hour, which is the price for ml.t3.medium according AWS: https://aws.amazon.com/sagemaker/pricing/.
 This instance will allow me to perform code debugging without incurring in great costs. In general the computing resources are consumed by the processes launched by the notebook 
 rather than the notebook itself, so no much is required in this instance.
 Once the project is running, I will consider increasing capacity along with the stress testing I will eventually perform.
 In previous experiences I've used also ml.m5.large ($0.115) with sucess, but this time I will take more care of resources used since in the former project I ended too close to the limit.
 
-2.
-I uploaded the train_and_deploy-solution.ipynb and hpo.py to run the Hyperparameter Optimization part.
+<br/>
+<img src="screenshots/Step1/1. Notebook instance creation.png" width="80%">
+<br/><br/>
+
+**1.2** I uploaded the train_and_deploy-solution.ipynb into the SageMaker notebook instance, as well as the files hpo.py and infernce2.py to run the Hyperparameter Optimization part, the training-debugging part and the endpoint deploy part.
 
 3.
 Created a bucket named "udacitysolution-alela" and changed the notebook to use that bucket.

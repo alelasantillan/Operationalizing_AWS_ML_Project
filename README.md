@@ -11,7 +11,7 @@ The project consists in 5 Steps<br/>
 Step 1: Train and deploy a model on a Sagemaker notebook (one of the modalities that Sagemaker offer amongst several more).<br/>
 Step 2: Perform a similar task on an EC2 instance.</br>
 Step 3: Create a Lambda function that will consume your model inference capabilites via endpoints.</br>
-Step 4: Security and testing
+Step 4: Security and testing.<br/>
 Step 5: Set up concurrence for your lambda function and auto-scaling for your deployed endpoint.</br>
 
 ## Step 0: Project Set Up and Installation

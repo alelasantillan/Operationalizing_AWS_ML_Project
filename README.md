@@ -90,29 +90,29 @@ We can keep this values to use them later for the training-debugging of the mode
 We kept the logs of both invocations to see if there is some sensitive difference but inference times were similar. We should instead perform a lot of requests to see how the endpoints latency behaves in case of higher throughput.
 The code for the single instance:
 <br/>
-<img src="screenshots/Step1/5.1 Code for Training and debugging single instance estimator.png"width="80%">
+<img src="screenshots/Step1/5.1 Code for Training and debugging single instance estimator.png" width="80%">
 <br/><br/>
 The training for the single instance estimator produced by that code:
 <br/>
-<img src="screenshots/Step1/5.2. Training job for training and debugging single instance estimator.png"width="80%">
+<img src="screenshots/Step1/5.2. Training job for training and debugging single instance estimator.png" width="80%">
 <br/><br/>
 Process jobs completed to avoid overfitting, poor weight initilizacion, overtraining and vanishing gradients:
 <br/>
-<img src="screenshots/Step1/5.3. Process jobs created and completed to train and debug single instance estimator.png"width="80%">
+<img src="screenshots/Step1/5.3. Process jobs created and completed to train and debug single instance estimator.png" width="80%">
 <br/><br/>
 
 **1.6**  Analogously, we performed same computation for the multi-instance model:
 The code for the multi instance:
 <br/>
-<img src="screenshots/Step1/6.1 Code for Training and debugging multi instance estimator.png"width="80%">
+<img src="screenshots/Step1/6.1 Code for Training and debugging multi instance estimator.png" width="80%">
 <br/><br/>
 The training for the multi instance estimator produced by that code:
 <br/>
-<img src="screenshots/Step1/6.2. Training job for training and debugging multi instance estimator.png"width="80%">
+<img src="screenshots/Step1/6.2. Training job for training and debugging multi instance estimator.png" width="80%">
 <br/><br/>
 Process jobs completed to avoid overfitting, poor weight initilizacion, overtraining and vanishing gradients:
 <br/>
-<img src="screenshots/Step1/6.3. Process jobs created and completed to train and debug multi instance estimator.png"width="80%">
+<img src="screenshots/Step1/6.3. Process jobs created and completed to train and debug multi instance estimator.png" width="80%">
 <br/><br/>
 
 **1.7** After creating this two endpoints, the final version of the notebook is the one in this repo and we deleted the endpoints and stop the notebook instance to avoid charges.

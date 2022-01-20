@@ -262,9 +262,8 @@ bedc566e-5914-40dd-8375-87253071f404
 
 **5.1** To let the lamdba answer requests in a parallel fashion we added concurrency from the configuration 
 of the lambda function. The concurrency setup can be located in left menu of the lambda configuration pane.
-
 <br/>
-<img src="screenshots/Step5/1.Concurrency menu on the left in Lambda configuration tab.png" width="80%">
+<img src="screenshots/Step5/1.Concurrency menu on the left in Lambda configuration tab .png" width="80%">
 <br/><br/>
 
 **5.2** First we must set up the version1 of the function and using the edit button in Concurrency pane we selected

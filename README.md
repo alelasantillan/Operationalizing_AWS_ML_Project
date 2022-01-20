@@ -14,7 +14,6 @@ Step 3: Create a Lambda function that will consume your model inference capabili
 Step 4: Security and testing
 Step 5: Set up concurrence for your lambda function and auto-scaling for your deployed endpoint.</br>
 
-
 ## Step 0: Project Set Up and Installation
 You will need to have a AWS account, which can be opened for free at https://aws.amazon.com 
 You will be able to follow all the steps in this project in a day of work and with a cost of around $4.00

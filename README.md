@@ -221,7 +221,7 @@ This error was caused because of Lambda running on a rol that has no permissions
 <br/><br/>
 To solve that we added the policies for sagemakerfullaccess and s3fullaccess to the execution role.
 <br/>
-<img src="screenshots/Step4/4.2 Lamda error solution 2.png" width="80%">
+<img src="screenshots/Step4/4.3 Lamda error solution 2.png" width="80%">
 <br/><br/>
                                                                        
 **4.2** I rerun the test and now it worked!
@@ -256,25 +256,57 @@ Request ID
 bedc566e-5914-40dd-8375-87253071f404
 
 
-## Step 5: Set up concurrence for your lambda function an
+## Step 5: Set up concurrence for your lambda function and auto-scaling for your deployed endpoint.
 
-1.
-To let the lamdba answer requests in a parallel fashion we added concurrency from the configuration 
-of the lambda function.
+**Concurrecy**
 
-reserved concurrency price is low, but latency could be high.
-provisioned concurrency is always on and more costly
+**5.1** To let the lamdba answer requests in a parallel fashion we added concurrency from the configuration 
+of the lambda function. The concurrency setup can be located in left menu of the lambda configuration pane.
 
-we set up the version1 of the function and using the edit button in Concurrency pane we selected
-reserved concurrency of 3 (to avoid costs while the enpoint is deployed)
+<br/>
+<img src="screenshots/Step5/1.Concurrency menu on the left in Lambda configuration tab.png" width="80%">
+<br/><br/>
+
+**5.2** First we must set up the version1 of the function and using the edit button in Concurrency pane we selected
+reserved concurrency of 3 (to avoid costs while the enpoint is deployed).
+<br/>
+<img src="screenshots/Step5/2.Concurrency - First create a new version of the Lambda function - Versoin1.png" width="80%">
+<br/><br/>
+
+**5.3** There are two tipes of concurrency settings:
+Reserved concurrency price is low, but latency could be high.
+Provisioned concurrency is always available and so, more costly.
+<br/>
+<img src="screenshots/Step5/3.Concurrency - provisioned vs reserved.png" width="80%">
+<br/><br/>
+
+**5.4** I will configure concurrency only for reserved instances:
+<br/>
+<img src="screenshots/Step5/4.Concurrency - Reserverd instaces config.png" width="80%">
+<br/><br/>
+
+**5.5** Finally the reserved concurrency setting is ready.
+<br/>
+<img src="screenshots/Step5/5.Concurrency ready.png" width="80%">
+<br/><br/>
 
 
-auto scaling
-we will scale our endpoint to scale to more instances and with some short scale in cool down time, and some longer scale out cool down time.
+**Auto scaling**
+
+**5.6** I will scale our endpoint to scale to more instances and with some short scale in cool down time, and some longer scale out cool down time.
+<br/>
+<img src="screenshots/Step5/6.Auto-Scaling Configure Endpont Auto-Scaling.png" width="80%">
+<br/><br/>
+**5.7** I choose 3 instances of auto scaling as well as 3 reserved concurrency to be able to deal with triple increase in demand. 
+<br/>
+<img src="screenshots/Step5/7.Auto-Scaling Details Setting 3-30-300.png" width="80%">
+<br/><br/>
+**5.8** Finally auto-scaling is set!
+<br/>
+<img src="screenshots/Step5/8.Automatic-Scalling Set.png" width="80%">
+<br/><br/>
 
 
-
-we choose 3 instances of auto scaling as well as 3 reserved concurrency to be able to deal with triple increase in demand. 
 
 
 ## Final words:
